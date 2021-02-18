@@ -1,0 +1,29 @@
+spring:
+  h2:
+    console:
+      enabled: true
+
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: default
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    properites:
+        hibernate:
+          generate_statistics: true
+
+logging:
+  level:
+    org:
+      hibernate:
+        type: trace
+        stat: debug

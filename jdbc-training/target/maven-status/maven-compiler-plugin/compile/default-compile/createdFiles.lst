@@ -1,1 +1,4 @@
+com\jdbc\repository\PersonJdbcDao.class
 com\jdbc\JdbcApp.class
+com\jdbc\model\Person.class
+com\jdbc\model\PersonRowMapper.class
