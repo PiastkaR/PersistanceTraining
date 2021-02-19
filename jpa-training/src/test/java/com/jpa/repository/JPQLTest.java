@@ -116,6 +116,6 @@ public class JPQLTest {
         int noOfRowsUpdated = query.executeUpdate();
 
         //Assert
-        assertTrue(noOfRowsUpdated == 5);
+        assertTrue(noOfRowsUpdated == 6);
     }
 }

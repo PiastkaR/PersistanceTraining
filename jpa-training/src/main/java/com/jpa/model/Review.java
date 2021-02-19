@@ -20,9 +20,12 @@ public class Review {
     @ToString.Exclude
     private String description;
 
-    @ManyToOne //OWNING SIDE OF THE RELATIONSHIP!
+    @ManyToOne //OWNING SIDE OF THE RELATIONSHIP! - Will add column
     @ToString.Exclude
     private Course course;
+
+    @ManyToOne
+    private Student student;
 
     public Review(String rating, String description) {
         this.rating = rating;

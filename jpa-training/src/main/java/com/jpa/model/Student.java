@@ -24,6 +24,9 @@ public class Student {
     @ToString.Exclude
     private Passport passport;
 
+    @OneToMany(mappedBy = "student")
+    private List<Review> reviews;
+
     @ManyToMany
     @JoinTable(name = "STUDENT_COURSE",
             joinColumns = @JoinColumn(name = "STUDENT_ID"),
