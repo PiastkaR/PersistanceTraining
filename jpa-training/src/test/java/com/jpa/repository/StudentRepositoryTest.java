@@ -1,5 +1,6 @@
 package com.jpa.repository;
 
+import com.jpa.model.Course;
 import com.jpa.model.Passport;
 import com.jpa.model.Student;
 import org.junit.Test;
@@ -10,6 +11,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -52,4 +55,23 @@ public class StudentRepositoryTest {
         //Assert
         assertThat(student.getId()).isEqualTo(EXPECTED_STUDENT_NUMBER);
     }
+
+    @Test
+    @Transactional
+    public void retrieveStudentAndCourses() {
+        //Arrange
+        ArrayList<Course> courses = createCourses();
+        // Act
+        Student student = entityManager.find(Student.class, 20001L);
+
+        //Assert
+        assertThat(student.getCourses().get(0).getName()).isEqualTo(courses.get(0).getName());
+    }
+
+    private ArrayList <Course> createCourses() {
+        Course course = CourseFactory.createCourse("Jpa in 50 steps - updated");
+        Course course2 = CourseFactory.createCourse("Jpa in 150 steps");
+        return new ArrayList<>(Arrays.asList(course, course2));
+    }
+
 }

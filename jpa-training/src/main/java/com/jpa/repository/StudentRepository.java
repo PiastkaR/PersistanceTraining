@@ -1,5 +1,6 @@
 package com.jpa.repository;
 
+import com.jpa.model.Course;
 import com.jpa.model.Passport;
 import com.jpa.model.Student;
 import lombok.RequiredArgsConstructor;
@@ -49,5 +50,13 @@ public class StudentRepository {
         Passport passport = student.getPassport();
         passport.setNumber("E12345");
         student.setName("Rafal-updated");
+    }
+
+    public void insertStudentAndCourse(Student student, Course course) {
+        student.addCourse(course);
+        course.addStudent(student);
+
+        entityManager.persist(student);
+        entityManager.persist(course);
     }
 }

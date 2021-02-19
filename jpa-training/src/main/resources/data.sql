@@ -34,3 +34,12 @@ INSERT INTO review (id, rating, description, course_id)
 VALUES (50002, '4', 'Wonderful Course',10001);
 INSERT INTO review (id, rating, description, course_id)
 VALUES (50003, '5', 'Awesome Course',10003);
+--------------------------------------------------------------
+INSERT INTO student_course (student_id, course_id)
+VALUES (20001, 10001);
+INSERT INTO student_course (student_id, course_id)
+VALUES (20002, 10001);
+INSERT INTO student_course (student_id, course_id)
+VALUES (20003, 10001);
+INSERT INTO student_course (student_id, course_id)
+VALUES (20001, 10003);

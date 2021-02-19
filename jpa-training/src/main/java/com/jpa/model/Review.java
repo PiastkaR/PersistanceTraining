@@ -1,27 +1,27 @@
 package com.jpa.model;
 
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
+@Data
+@NoArgsConstructor
 @Entity
-@Getter
-@Setter
-@ToString
-@RequiredArgsConstructor
 public class Review {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="rev_seq")
+    @SequenceGenerator(name = "rev_seq", sequenceName = "rev_seq", initialValue = 1, allocationSize=1)
     private Long id;
 
     private String rating;
 
+    @ToString.Exclude
     private String description;
 
     @ManyToOne //OWNING SIDE OF THE RELATIONSHIP!
+    @ToString.Exclude
     private Course course;
 
     public Review(String rating, String description) {

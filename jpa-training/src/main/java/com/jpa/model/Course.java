@@ -3,7 +3,6 @@ package com.jpa.model;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -12,11 +11,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
 @Getter
 @Setter
-@ToString
 @RequiredArgsConstructor
+@Entity
 @Table(name = "course")
 @NamedQueries(value = {
         @NamedQuery(name = "get_all_courses", query = "select c from Course c"),
@@ -25,7 +23,8 @@ import java.util.List;
 public class Course {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="cour_seq")
+    @SequenceGenerator(name = "cour_seq", sequenceName = "cour_seq", initialValue = 1, allocationSize=1)
     private Long id;
 
     @Column(name = "name", nullable = false)
@@ -34,18 +33,25 @@ public class Course {
     @OneToMany(mappedBy = "course")
     private List<Review> reviews = new ArrayList<>();
 
+    @ManyToMany(mappedBy = "courses") //to reduce no. of join tables. does not matter on which side put
+    private List<Student> students = new ArrayList<>();
+
     @CreationTimestamp
     private LocalDateTime createdDate;
 
     @UpdateTimestamp
     private LocalDateTime lastUpdatedDate;
 
-    public void addReview(Review review){
+    public void addReview(Review review) {
         this.reviews.add(review);
     }
 
-    public void removeReview(Review review){
+    public void removeReview(Review review) {
         this.reviews.remove(review);
+    }
+
+    public void addStudent(Student student) {
+        this.students.add(student);
     }
 
     public Course(String name) {

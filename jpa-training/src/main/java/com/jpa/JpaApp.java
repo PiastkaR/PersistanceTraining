@@ -2,6 +2,7 @@ package com.jpa;
 
 import com.jpa.model.Course;
 import com.jpa.model.Review;
+import com.jpa.model.Student;
 import com.jpa.repository.CourseRepository;
 import com.jpa.repository.PersonJpaRepository;
 import com.jpa.repository.StudentRepository;
@@ -43,5 +44,6 @@ public class JpaApp implements CommandLineRunner {
         courseRepository.save(course);
         studentRepository.saveStudentWithPassport();
         courseRepository.addReviewsForCourseGeneric(10003L, reviews);
+        studentRepository.insertStudentAndCourse(new Student("Jack"), new Course("Microservices in 100 steps"));
     }
 }
