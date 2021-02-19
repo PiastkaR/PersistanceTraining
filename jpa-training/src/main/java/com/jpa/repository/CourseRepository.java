@@ -1,12 +1,14 @@
 package com.jpa.repository;
 
 import com.jpa.model.Course;
+import com.jpa.model.Review;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Repository
@@ -46,5 +48,31 @@ public class CourseRepository {
         course.setName("playWithEntityManager - updated");
         course2.setName("Angular JS - updated");
         entityManager.refresh(course); //refreshing data! no changes will be saved!
+    }
+
+    public void addReviewsForCourse() {
+        Course course = findById(10003L);
+        Review review = new Review("5", "Great Hands-on Stuff");
+        Review review2 = new Review("5", "Hatsoff.");
+
+        //setting the relationship
+        course.addReview(review);
+        review.setCourse(course);
+
+        course.addReview(review2);
+        review2.setCourse(course);
+
+        entityManager.persist(review);
+        entityManager.persist(review2);
+    }
+
+    public void addReviewsForCourseGeneric(Long courseId, List<Review> reviews) {
+        Course course = findById(courseId);
+
+        for (Review review : reviews) {
+            course.addReview(review);
+            review.setCourse(course);
+            entityManager.persist(review);
+        }
     }
 }
