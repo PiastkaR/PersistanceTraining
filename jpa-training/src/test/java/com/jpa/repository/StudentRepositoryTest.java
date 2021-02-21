@@ -69,7 +69,7 @@ public class StudentRepositoryTest {
     }
 
     private ArrayList <Course> createCourses() {
-        Course course = CourseFactory.createCourse("Jpa in 50 steps - updated");
+        Course course = CourseFactory.createCourse("Jpa in 50 steps");
         Course course2 = CourseFactory.createCourse("Jpa in 150 steps");
         return new ArrayList<>(Arrays.asList(course, course2));
     }

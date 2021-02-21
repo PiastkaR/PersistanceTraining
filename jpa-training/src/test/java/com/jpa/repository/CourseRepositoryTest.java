@@ -24,7 +24,7 @@ public class CourseRepositoryTest {
     //Hibernate cannot be unit tested!
     private static final Long COURSE_ID = 10001L;
     private static final Long COURSE_ID2 = 10002L;
-    private static final String EXPECTED_COURSE = "Jpa in 50 steps - updated";
+    private static final String EXPECTED_COURSE = "Jpa in 50 steps";
     private static final String UPDATED_COURSE = "Updated name";
     private static final ArrayList<Review> EXPECTED_REVIEW_LIST = new ArrayList<>(Arrays.asList(
             new Review("5", "Great Course"),
