@@ -2,6 +2,7 @@ package com.jpa.repository;
 
 import com.jpa.model.Course;
 import com.jpa.model.Review;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
+@Slf4j
 public class CourseRepositoryTest {
     //Hibernate cannot be unit tested!
     private static final Long COURSE_ID = 10001L;
@@ -78,4 +80,13 @@ public class CourseRepositoryTest {
         assertThat(reviews).isNotEqualTo(EXPECTED_REVIEW_LIST);
     }
 
+    @Test
+    @Transactional
+    public void firstLvlCacheDemo() {
+        Course actualCourse = courseRepository.findById(10001L);
+        log.info("Course retrieved: {}", actualCourse);
+
+        Course actualCourse2 = courseRepository.findById(10001L);
+        log.info("Course retrieved again: {}", actualCourse2);
+    }
 }

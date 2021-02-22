@@ -1,5 +1,6 @@
 package com.jpa.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -20,6 +21,7 @@ import java.util.List;
         @NamedQuery(name = "get_all_courses", query = "select c from Course c"),
         @NamedQuery(name = "get_with_name_100_steps", query = "Select c From Course c where name like '%100 steps'")
 })
+@Cacheable
 public class Course {
 
     @Id
@@ -31,9 +33,12 @@ public class Course {
     private String name;
 
     @OneToMany(mappedBy = "course")
+//    @JsonIgnore
     private List<Review> reviews = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "courses") //to reduce no. of join tables. does not matter on which side put
+    //to reduce no. of join tables. does not matter on which side put
+    @ManyToMany(mappedBy = "courses")
+    @JsonIgnore
     private List<Student> students = new ArrayList<>();
 
     @CreationTimestamp
