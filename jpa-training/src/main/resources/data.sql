@@ -13,6 +13,20 @@ INSERT INTO course (id, name, created_date, last_updated_date)
 VALUES (10003, 'Jpa in 150 steps', sysdate(), sysdate());
 INSERT INTO course (id, name, created_date, last_updated_date)
 VALUES (10004, 'Jpa in 200 steps', sysdate(), sysdate());
+INSERT INTO course (id, name, created_date, last_updated_date)
+VALUES (10005, 'Dummy1', sysdate(), sysdate());
+INSERT INTO course (id, name, created_date, last_updated_date)
+VALUES (10006, 'Dummy2', sysdate(), sysdate());
+INSERT INTO course (id, name, created_date, last_updated_date)
+VALUES (10007, 'Dummy3', sysdate(), sysdate());
+INSERT INTO course (id, name, created_date, last_updated_date)
+VALUES (10008, 'Dummy4', sysdate(), sysdate());
+INSERT INTO course (id, name, created_date, last_updated_date)
+VALUES (10009, 'Dummy5', sysdate(), sysdate());
+INSERT INTO course (id, name, created_date, last_updated_date)
+VALUES (10010, 'Dummy6', sysdate(), sysdate());
+INSERT INTO course (id, name, created_date, last_updated_date)
+VALUES (10011, 'Dummy7', sysdate(), sysdate());
 --------------------------------------------------------------
 INSERT INTO passport (id, number)
 VALUES (40001, 'E12345');
