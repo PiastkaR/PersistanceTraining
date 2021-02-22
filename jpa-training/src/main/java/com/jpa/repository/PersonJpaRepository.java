@@ -3,11 +3,11 @@ package com.jpa.repository;
 import com.jpa.model.PersonJpa;
 import lombok.EqualsAndHashCode;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
