@@ -13,8 +13,8 @@ import javax.persistence.*;
 @Entity
 public class Passport {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="pas_seq")
-    @SequenceGenerator(name = "pas_seq", sequenceName = "pas_seq", initialValue = 1, allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pas_seq")
+    @SequenceGenerator(name = "pas_seq", sequenceName = "pas_seq", initialValue = 1, allocationSize = 1)
     private Long id;
 
     @Column(name = "number", nullable = false)
@@ -26,5 +26,10 @@ public class Passport {
 
     public Passport(String number) {
         this.number = number;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Passport[%s]", number);
     }
 }

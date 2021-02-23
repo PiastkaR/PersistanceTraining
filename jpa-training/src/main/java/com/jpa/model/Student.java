@@ -29,6 +29,9 @@ public class Student {
     @OneToMany(mappedBy = "student")
     private List<Review> reviews;
 
+    @Embedded
+    private Address address;
+
     @ManyToMany
     @JoinTable(name = "STUDENT_COURSE",
             joinColumns = @JoinColumn(name = "STUDENT_ID"),
@@ -41,5 +44,10 @@ public class Student {
 
     public void addCourse(Course course) {
         this.courses.add(course);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Student[%s]", name);
     }
 }

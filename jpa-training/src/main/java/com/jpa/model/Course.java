@@ -5,7 +5,9 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -19,9 +21,12 @@ import java.util.List;
 @Table(name = "course")
 @NamedQueries(value = {
         @NamedQuery(name = "get_all_courses", query = "select c from Course c"),
+        @NamedQuery(name = "get_all_courses_join_fetch", query = "select c from Course c JOIN FETCH c.students s"),
         @NamedQuery(name = "get_with_name_100_steps", query = "Select c From Course c where name like '%100 steps'")
 })
 @Cacheable
+@SQLDelete(sql="update course set is_deleted=true where id=?")
+@Where(clause = "is_deleted=false")
 public class Course {
 
     @Id
@@ -47,6 +52,13 @@ public class Course {
     @UpdateTimestamp
     private LocalDateTime lastUpdatedDate;
 
+    private boolean isDeleted;
+
+    @PreRemove
+    private void preRemove(){
+        this.isDeleted = true;
+    }
+
     public void addReview(Review review) {
         this.reviews.add(review);
     }
@@ -61,5 +73,10 @@ public class Course {
 
     public Course(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Course[%s]", name);
     }
 }

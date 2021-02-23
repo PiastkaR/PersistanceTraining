@@ -18,4 +18,11 @@ public class PartTimeEmployee extends Employee {
         super(name);
         this.hourlyWage = hourlyWage;
     }
+
+    @Override
+    public String toString() {
+        return "PartTimeEmployee{" +
+                "hourlyWage=" + hourlyWage +
+                '}';
+    }
 }

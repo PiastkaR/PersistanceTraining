@@ -2,6 +2,7 @@ package com.jpa.repository;
 
 import com.jpa.model.Course;
 import com.jpa.model.Review;
+import com.jpa.model.ReviewRating;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,9 +30,9 @@ public class CourseRepositoryTest {
     private static final String EXPECTED_COURSE = "Jpa in 50 steps";
     private static final String UPDATED_COURSE = "Updated name";
     private static final ArrayList<Review> EXPECTED_REVIEW_LIST = new ArrayList<>(Arrays.asList(
-            new Review("5", "Great Course"),
-            new Review("4", "Wonderful Course"),
-            new Review("5", "Awesome Course")
+            new Review(ReviewRating.FIVE, "Great Course"),
+            new Review(ReviewRating.FOUR, "Wonderful Course"),
+            new Review(ReviewRating.FIVE, "Awesome Course")
     ));
 
 

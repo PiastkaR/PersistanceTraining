@@ -104,7 +104,7 @@ public class JPQLTest {
         //Assert
         assertThat(resultList.equals(EXPECTED_COURSE));
     }
-
+        ////////NATIVE QUERIES////////
     @Test
     public void shouldFindCourseByNativeQuery() {
         //Arrange & Act

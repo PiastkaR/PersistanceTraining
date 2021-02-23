@@ -2,6 +2,7 @@ package com.jpa.repository;
 
 import com.jpa.model.Course;
 import com.jpa.model.Review;
+import com.jpa.model.ReviewRating;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
@@ -52,8 +53,8 @@ public class CourseRepository {
 
     public void addReviewsForCourse() {
         Course course = findById(10003L);
-        Review review = new Review("5", "Great Hands-on Stuff");
-        Review review2 = new Review("5", "Hatsoff.");
+        Review review = new Review(ReviewRating.FIVE, "Great Hands-on Stuff");
+        Review review2 = new Review(ReviewRating.FIVE, "Hatsoff.");
 
         //setting the relationship
         course.addReview(review);

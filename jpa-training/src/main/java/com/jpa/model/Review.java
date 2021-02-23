@@ -17,7 +17,8 @@ public class Review {
     @SequenceGenerator(name = "rev_seq", sequenceName = "rev_seq", initialValue = 1, allocationSize=1)
     private Long id;
 
-    private String rating;
+    @Enumerated(EnumType.STRING)
+    private ReviewRating rating;
 
     @ToString.Exclude
     private String description;
@@ -29,8 +30,18 @@ public class Review {
     @ManyToOne
     private Student student;
 
-    public Review(String rating, String description) {
+    public Review(ReviewRating rating, String description) {
         this.rating = rating;
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "id=" + id +
+                ", rating='" + rating + '\'' +
+                ", description='" + description + '\'' +
+                ", student=" + student +
+                '}';
     }
 }
